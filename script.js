@@ -8,6 +8,7 @@ var choiceDisplay = document.querySelector("#choiceDisplay");
 var answerDisplay = document.querySelector("#answerDisplay");
 var answerBtn = document.createElement("button");
 var btns = document.getElementsByClassName("btn");
+var points = document.querySelector("#score")
 
 
 
@@ -15,26 +16,13 @@ var totalSeconds = 75;
 var secondsElapsed = 0;
 var interval;
 var questionCount = 0;
+var answerCount = 0;
+var score = 0;
+
+
+
 
 var timerStarted = false;
-
-//This is the way the numbers will be displayed on the browser
-
-
-// var secondsLeft = totalSeconds - secondsElapsed;
-// var secondsLeft = (totalSeconds - secondsElapsed) % 60;
-
-//   var formattedSeconds;
-
-//   if (secondsLeft < 10) {
-//     formattedSeconds = "0" + secondsLeft;
-//   } 
-//   else {
-//     formattedSeconds = secondsLeft;
-//   }
-
-//   return formattedSeconds;
-
 
 
 //setting my timer
@@ -46,59 +34,79 @@ var timer = function () {
         showTime();
     }, 1000);
 }
+//This function will determine when the timer will stop
 var showTime = function () {
     var secondsLeft = totalSeconds - secondsElapsed;
     timeLeft.textContent = secondsLeft;
-    if (secondsLeft === 0) { stop(); }
+    if (secondsLeft < 1) {
+        timeLeft.textContent = 0; stop(); }
 }
 
-
+//This function start the timer
 var start = function () {
     timerStarted = true;
     timer();
     console.log(questions)
     questionaire();
+   
 
-    // if (questions < 5) {
-    // questions ++}
-
-    // else {
-    //     stop();}
+    
 }
-//Function that displays the question
+//Function that displays the questions
 function questionaire() {
+    
     if (questionCount < 5) {
-        // for (var j=0; j<questions.length; j++){
-        //     var quest = document.createElement("h3");
-        //     quest.textContent = questions[j].tittle;
-        //     questionaireDisplay.appendChild(quest);
+       
         questionaireDisplay.textContent = questions[questionCount].tittle;
         console.log(questionCount)
-        //clear the previous answer buttons
+        
+        //clears the previous answer buttons
         choiceDisplay.innerHTML = "";
+        answerDisplay.innerHTML = "";
+        
         for (var i = 0; i < 4; i++) {
 
             var answerBtn = document.createElement("button");
+          
+            
             answerBtn.textContent = questions[questionCount].choices[i];
             answerBtn.setAttribute("class", "btn");
             answerBtn.addEventListener("click", function () {
+               
                 console.log(answerBtn)
                 questionCount++;
                 questionaire();
-                questionRecap();
+                
+            
+                    
+                if (this.innerText==questions[0].choices[1] || this.innerText==questions[1].choices[0] || this.innerText==questions[2].choices[2] || this.innerText==questions[3].choices[3] || this.innerText==questions[4].choices[2]) {
+                    answerDisplay.innerHTML = "Correct";
+                    score++;
+                  points.textContent = score;
+                    
+                }
+                else {
+                   answerDisplay.innerHTML = "Incorrect"; 
+                    totalSeconds-=15;
+                }
+            
+               
+
             })
             choiceDisplay.appendChild(answerBtn);
+           
+           
             
-       
-
-
             
 
         }
+
     } else {
-        stop();
+        choiceDisplay.innerHTML = ""; questionDisplay.innerHTML = "";
+        answerDisplay.innerHTML = "End of Quiz";  stop();
     }
 }
+
 
 //starting my countdown by assigning a function to showTime
 
@@ -108,30 +116,16 @@ var stop = function () {
     clearInterval(interval);
 }
 
-
-
-
-
-
 startButton.addEventListener("click", function () {
     console.log("btn btn press")
     if (timerStarted === false) {
         start();
         console.log("listener true")
         questionaire();
-        questionRecap();
+       
+       
+        
     }
     
-
-    //     var mybuttons =  document.getElementsByClassName('btn')
-    //     for(var i=0;i<mybuttons.length;i++){
-    //         mybuttons[i].addEventListener("click", function() {
-    //         console.log(answerBtn)
-
-    //         questionCount++;
-    //         questionaire();
-    //   } )
-
-
 
 });

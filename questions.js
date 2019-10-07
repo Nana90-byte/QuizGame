@@ -1,47 +1,49 @@
 
 var questions = [
     {
-        tittle: "Question",
-        choices: ["a","b","c","d"],
-        answer: ["Correct","Incorrect"]
+        tittle: "Who is Garfield?",
+        choices: ["A smart lizard","A lazy cat","A skinny cat","A mysterious spider"],
+        answer: ["A lazy cat"]
     
     },
     {
-        tittle: "Question2",
-        choices: ["r","4","u","e"],
-        answer: "c"
+        tittle: "Where is the best ballet school located?",
+        choices: ["Russia","Italy","England","France"],
+        answer: ["Russia"]
     },
 
     {
-        tittle: "Question3",
-        choices: ["a","b","c","d"],
-        answer: "c"
+        tittle: "Who was Paco de Lucia?",
+        choices: ["US President","Scientist","Guitarist","None of the above"],
+        answer: ["Guitarist"]
     },
     {
-        tittle: "Question4",
-        choices: ["a","b","c","d"],
-        answer: "c"
+        tittle: "After Spain, which country has the most flamenco schools?",
+        choices: ["US","Puerto Rico","Brazil","Japan"],
+        answer: ["Japan"]
     },
     {
-        tittle: "Question5",
-        choices: ["a","b","c","d"],
-        answer: "c"
+        tittle: "Which one is a dance technique?",
+        choices: ["hip-hop","salsa","vaganova","timba"],
+        answer: ["vaganova"]
     },
 
 ]
 
-var verification = ["Correct","Incorrect"]
 
-var questionRecap = function() {
-    if (questions[0].choices[1]) {
-       answerDisplay.textContent = questions[0].answer[0]
-    }
-    else if (questions[0].choices[0] || questions[0].choices[2] || questions[0].choices[3]) { 
-        answerDisplay.textContent = questions[0].answer[1]
-    }
+// var verification = ["Correct!","Incorrect"]
 
-}
+//  var questionRecap = function() {
+    
+//     if (this.innerText==questions[0].choices[1] || questions[1].choices[0] || questions[2].choices[2] || questions[3].choices[3] || questions[4].choices[2]) {
+//         answerDisplay.textContent = (verification[0]);
+        
+//     }
+//     else {
+//        answerDisplay.textContent = (verification[1]); 
+//         totalSeconds-=15;
+//     }
+// }
 
-
-
+     
 
